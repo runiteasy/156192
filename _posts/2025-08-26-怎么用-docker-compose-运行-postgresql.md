@@ -1,5 +1,7 @@
+# 怎么用Docker Compose 部署 PostgreSQL
+---
 
-# **Ubuntu 上使用 Docker Compose 部署 Bitnami PostgreSQL（持久化 + 权限修复）**
+# **Ubuntu 上使用 Docker Compose 部署 PostgreSQL（持久化 + 权限修复）**
 
 > 本文档适用于 **Bitnami PostgreSQL** 容器（镜像：`bitnami/postgresql`）。
 
