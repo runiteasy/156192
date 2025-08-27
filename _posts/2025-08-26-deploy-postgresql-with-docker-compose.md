@@ -1,3 +1,5 @@
+How to Deploy Postgresql with Docker Compose
+---
 # **Deploying Bitnami PostgreSQL on Ubuntu Using Docker Compose (Persistent Data + Permission Fix)**
 
 > This guide explains how to set up a **Bitnami PostgreSQL** container using **Docker Compose** on Ubuntu, configure persistent storage, and fix permission issues such as
