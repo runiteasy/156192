@@ -1,23 +1,31 @@
 ---
 layout: post
-title: "怎么设置Sonarqube开机自动启动"
+title: "SonarQube 开机自动启动配置（脚本方式）"
 date: 2025-09-04
 categories: sonarqube
-tags: [sonarqube, service, script]
+tags: [sonarqube, service, script, systemd, linux, ubuntu, rhel]
+description: "通过一个简单的 shell 脚本，在 Linux 上配置 SonarQube 为 systemd 服务，实现开机自动启动。适用于 Ubuntu、RHEL、CentOS 等系统。"
+keywords: "SonarQube 开机自启, SonarQube 自动启动, SonarQube systemd, SonarQube 服务, SonarQube 脚本, SonarQube Ubuntu, SonarQube RHEL, SonarQube CentOS"
 ---
 
-# 怎么用脚本设置Sonarqube开机自动启动
+# SonarQube 开机自动启动配置（脚本方式）
 
+在 Linux 系统（Ubuntu、RHEL、CentOS 等）中安装 **SonarQube** 后，默认情况下系统重启后不会自动启动。  
+本文将演示如何通过一个 **一键脚本** 把 SonarQube 注册为 `systemd` 服务，并设置开机自启。
 
-通过一个 **一键运行的脚本**，执行后就能自动创建 systemd 服务，并设置好开机自启。
+---
 
-假设：
+## 环境假设
 
-* SonarQube 安装在 `/opt/sonarqube`
-* SonarQube 启动脚本路径：`/opt/sonarqube/bin/linux-x86-64/sonar.sh`
-* 运行用户：`sonarqube`
+- SonarQube 安装路径：`/opt/sonarqube`  
+- SonarQube 启动脚本：`/opt/sonarqube/bin/linux-x86-64/sonar.sh`  
+- 运行用户：`sonarqube`  
 
-创建一个脚本 `setup-sonarqube-service.sh`，执行后就能完成：
+---
+
+## 步骤一：创建脚本
+
+新建一个脚本 `setup-sonarqube-service.sh`，内容如下：
 
 ```bash
 #!/bin/bash
@@ -65,7 +73,7 @@ systemctl daemon-reload
 echo "启动 SonarQube 服务..."
 systemctl start sonarqube
 
-echo "设置开机自启..."
+echo "设置 SonarQube 开机自启..."
 systemctl enable sonarqube
 
 echo "完成！使用以下命令管理 SonarQube:"
@@ -73,20 +81,26 @@ echo "  systemctl start sonarqube"
 echo "  systemctl stop sonarqube"
 echo "  systemctl restart sonarqube"
 echo "  systemctl status sonarqube"
-```
+````
 
 ---
 
-### 使用方法
+## 步骤二：运行脚本
 
 ```bash
 sudo bash setup-sonarqube-service.sh
 ```
 
-执行后，SonarQube 就会被注册为 systemd 服务，并且设置开机自启。
+执行完成后，SonarQube 将被注册为 systemd 服务，并自动设置为开机启动。
 
 ---
 
-全文结束 
+## 总结
 
-2025-09-04
+通过这种脚本方式，可以让 SonarQube 在系统重启后自动运行，避免每次手动启动。
+该方法适用于 **Ubuntu、Debian、RHEL、CentOS 以及其他基于 systemd 的 Linux 发行版**。
+
+---
+
+*发布日期：2025-09-04*
+
